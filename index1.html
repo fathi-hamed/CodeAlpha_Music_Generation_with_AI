@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIDI Player Demo</title>
+  <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+  <style>
+    /* Custom player style */
+    #section3 midi-player {
+      display: block;
+      width: inherit;
+      margin: 4px;
+      margin-bottom: 0;
+    }
+    #section3 midi-player::part(control-panel) {
+      background: #ff5;
+      border: 2px solid #000;
+      border-radius: 10px 10px 0 0;
+    }
+    #section3 midi-player::part(play-button) {
+      color: #353;
+      border: 2px solid currentColor;
+      background-color: #4d4;
+      border-radius: 20px;
+      transition: all 0.2s;
+      content: 'hello';
+    }
+    #section3 midi-player::part(play-button):hover {
+      color: #0a0;
+      background-color: #5f5;
+      border-radius: 10px;
+    }
+    #section3 midi-player::part(time) {
+      font-family: monospace;
+    }
+
+    /* Custom visualizer style */
+    #section3 midi-visualizer .piano-roll-visualizer {
+      background: #ffd;
+      border: 2px solid black;
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      margin: 4px;
+      margin-top: 0;
+      overflow: auto;
+    }
+    #section3 midi-visualizer svg rect.note {
+      opacity: 0.6;
+      stroke-width: 2;
+    }
+    #section3 midi-visualizer svg rect.note[data-instrument="0"]{
+      fill: #e22;
+      stroke: #500;
+    }
+    #section3 midi-visualizer svg rect.note[data-instrument="2"]{
+      fill: #2ee;
+      stroke: #055;
+    }
+    #section3 midi-visualizer svg rect.note[data-is-drum="true"]{
+      fill: #888;
+      stroke: #888;
+    }
+    #section3 midi-visualizer svg rect.note.active {
+      opacity: 0.9;
+      stroke: #000;
+    }
+  </style>
+</head>
+<body>
+  <p>This is a demo for the <strong>html-midi-player</strong> package. For more information, see <a href="https://github.com/cifkao/html-midi-player" target="_blank">its GitHub repository</a>.</p>
+
+  <section id="section1">
+    <h2>1 player, 1 visualizer</h2>
+    <midi-player
+      src="https://raw.githubusercontent.com/Naelahsurti16/CodeAlpha_Project2_-Music_Generation_with_AI/main/generated_music.mid"
+      sound-font visualizer="#section1 midi-visualizer">
+    </midi-player>
+    <midi-visualizer type="piano-roll"></midi-visualizer>
+  </section>
+
+  <section id="section3">
+    <h2>Custom player and visualizer style</h2>
+    <midi-player
+      src="https://raw.githubusercontent.com/Naelahsurti16/CodeAlpha_Project2_-Music_Generation_with_AI/main/generated_music.mid"
+      sound-font visualizer="#section3 midi-visualizer">
+    </midi-player>
+    <midi-visualizer></midi-visualizer>
+  </section>
+</body>
+</html>
